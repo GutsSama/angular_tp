@@ -7,12 +7,11 @@ on:
 
 jobs:
   check_conventionnal:
+    name: conventional commits
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.event.pull_request.head.ref, 'feature/') }}
     steps:
-      - name: checking
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - uses: beemojs/conventional-pr-action@v2
-        run: echo "c'est un commit conventionnal"
       
