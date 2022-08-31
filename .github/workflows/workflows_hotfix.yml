@@ -6,13 +6,10 @@ on:
       - 'hotfix/**'
 
 jobs:
-  check_conventionnal:
-    name: conventional commits
+  check_conventional:
+    name: conventional commits hotfix
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.event.pull_request.head.ref, 'hotfix/') }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - uses: beemojs/conventional-pr-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: webiny/action-conventional-commits@v1.0.5
