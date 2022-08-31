@@ -1,10 +1,9 @@
-name: NF7-DO-03 test
+name: NF7-DO-03 feature
 
 on:
-  pull_request:
-    
-    types:
-      - opened
+  push:
+    branches:
+      - 'feature/**'
 
 jobs:
   check_conventionnal:
@@ -17,4 +16,3 @@ jobs:
       - uses: beemojs/conventional-pr-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      

@@ -1,20 +1,18 @@
-name: NF7-DO-03 test
+name: NF7-DO-03 hotfix
 
 on:
-  pull_request:
-    
-    types:
-      - opened
+  push:
+    branches:
+      - 'hotfix/**'
 
 jobs:
   check_conventionnal:
     name: conventional commits
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.event.pull_request.head.ref, 'feature/') }}
+    if: ${{ startsWith(github.event.pull_request.head.ref, 'hotfix/') }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - uses: beemojs/conventional-pr-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
