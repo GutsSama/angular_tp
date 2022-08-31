@@ -1,20 +1,27 @@
-name: NF7-DO-03 test
+name: NF8-DO-01 testing app
 
 on:
   pull_request:
-    
     types:
       - opened
+        branches:
+          - dev
 
 jobs:
-  check_conventionnal:
-    name: conventional commits
+  testing_config:
+    name: config to run
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.event.pull_request.head.ref, 'feature/') }}
+    strategy:
+      matrix:
+        node-version: [14, 16]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - uses: beemojs/conventional-pr-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+      - name: Node version ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm run test
       
