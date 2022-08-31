@@ -1,17 +1,17 @@
-name: NF7-DO-03
+name: NF7-DO-03 test
 
 on:
   pull_request:
-    branches: [ dev ]
+    types:
+      - opened
 
 jobs:
   check_conventionnal:
+    if: ${{ startsWith(github.event.pull_request.head.ref, 'features/') }}
+    run: echo "c'est un commit conventionnal"
     runs-on: ubuntu-latest
     steps:
       - name: checking
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - uses: beemojs/conventional-pr-action@v2
-        env:
-          if: ${{ startsWith(github.head_ref, 'feature') }}
-          run: echo "c'est commit conventionnal"
