@@ -34,10 +34,10 @@ jobs:
       name: Download
       needs: testing_config
       runs-on: ubuntu-latest
-    steps:
-      - name: download
-        uses: actions/download-artifact@v3
-        with:
-          name: coverage
-      - name: Lire le fichier
-        run: cat coverage.txt 
+      steps:
+        - name: download
+          uses: actions/download-artifact@v3
+          with:
+            name: coverage
+        - name: Lire le fichier
+          run: cat coverage.txt 
