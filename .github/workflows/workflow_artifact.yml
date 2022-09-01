@@ -1,4 +1,4 @@
-name: NF8-DO-01 testing app
+name: NF8-DO-02 Artifact
 
 on:
   pull_request:
