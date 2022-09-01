@@ -1,0 +1,14 @@
+name: NF4-DO-01 Issue created branch
+
+on:
+  issues:
+    types: [assigned]
+
+jobs:
+  create_issue_branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Issue Branch
+        uses: robvanderleek/create-issue-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
